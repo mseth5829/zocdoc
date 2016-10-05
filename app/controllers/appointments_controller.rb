@@ -8,10 +8,17 @@ class AppointmentsController < ApplicationController
 
   def create
     @name = current_user.name
-    
+    @appointment = Appointment.new(appointment_params)
+    @appointment.patient_id = current_user.id
+    if @appointment.save
+      redirect_to @appointment
+    else
+      render 'new'
+    end
   end
 
   def show
+    # @appointment = Appointment.find(params[:id])
   end
 
   def update
@@ -21,5 +28,10 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def appointment_params
+    params.require(:appointment).permit(:time, :complaint, :doctor_id)
   end
 end
