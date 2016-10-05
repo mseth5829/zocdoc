@@ -1,2 +1,20 @@
-<h1>Appointments#new</h1>
-<p>Find me in app/views/appointments/new.html.erb</p>
+<h1>Create new Appointment for: <%= @current_user.name %></h1>
+
+<%= form_for :appointment, url: appointments_path do |f| %>
+
+<p>
+  <%= f.label :time %><br>
+  <%= f.text_field :time %>
+</p>
+
+<p>
+  <%= f.label :doctor %><br>
+  <%= f.select :doctor_id, Doctor.all.collect {|x| [x.name, x.id]}  %>
+</p>
+
+<p>
+  <%= f.submit %>
+</p>
+<% end %>
+
+<%= link_to 'Back', appointments_path %>
