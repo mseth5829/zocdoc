@@ -9,11 +9,15 @@ class AppointmentsController < ApplicationController
   def create
     @name = current_user.name
     @appointment = Appointment.new(appointment_params)
-    @appointment.patient_id = current_user.id
-    if @appointment.save
-      redirect_to @appointment
-    else
+    if @appointment.doctor_id && @appointment.time
       render 'new'
+    else
+      @appointment.patient_id = current_user.id
+      if @appointment.save
+        redirect_to @appointment
+      else
+        render 'new'
+      end
     end
   end
 
@@ -24,10 +28,14 @@ class AppointmentsController < ApplicationController
 
   def update
     @appointment = Appointment.find(params[:id])
-    if @appointment.update(appointment_params)
-      redirect_to @appointment
+    if @appointment.doctor_id && @appointment.time
+      render 'new'
     else
-      render "edit"
+      if @appointment.update(appointment_params)
+        redirect_to @appointment
+      else
+        render "edit"
+      end
     end
   end
 
