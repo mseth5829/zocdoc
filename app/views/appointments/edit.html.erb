@@ -1,2 +1,36 @@
-<h1>Appointments#edit</h1>
-<p>Find me in app/views/appointments/edit.html.erb</p>
+<h1>Edit appointment with <%=@doctor.name%></h1>
+
+<%= form_for :appointment, url: appointment_path(@appointment), method: :patch do |f| %>
+
+<p>
+  <%= f.label :complaint %><br>
+  <%= f.text_field :complaint %>
+</p>
+
+<p>
+  <%= f.label :doctor %><br>
+  <%= f.select :doctor_id, Doctor.all.collect {|x| [x.name, x.id]}  %>
+</p>
+
+<p>
+  <%= f.label :time %><br>
+  <p>Please select a time between 9am to 5pm (appts made on an hourly basis)</p><br>
+  <select name="time">
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+    <option value="13">12</option>
+    <option value="14">12</option>
+    <option value="15">12</option>
+    <option value="16">12</option>
+  </select>
+</p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Back', appointment_path(@appointment) %>
