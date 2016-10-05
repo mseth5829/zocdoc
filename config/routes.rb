@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  # declare root_path
+
   resources :patients
   resources :doctors
   resources :appointments
