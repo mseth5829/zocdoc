@@ -24,6 +24,6 @@ class SessionsController < ApplicationController
   private
 
   def patient_params
-    params.require(:patient).permit(:name, :email)
+    params.require(:patient).permit(:email, :password)
   end
 end
