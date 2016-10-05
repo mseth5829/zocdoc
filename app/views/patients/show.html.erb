@@ -1,4 +1,17 @@
 <h1>Patients#show</h1>
 <p>Find me in app/views/patients/show.html.erb</p>
 
+<p>
+  <strong>Name: </strong>
+  <%= @patient.name %>
+</p>
+
+<p>
+  <strong>Confirmed Appointments: </strong>
+  <% @appointments.each do |app| %>
+      <p><%= app.name %></p>
+  <% end %>
+</p>
+
+<%= link_to 'Back', root_path %>
 <%= link_to 'New appointment', new_appointment_path %>

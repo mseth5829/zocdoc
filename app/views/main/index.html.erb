@@ -1,6 +1,6 @@
 <h1>Hello!</h1>
 
-<%= link_to "New/Edit Appointments", edit_appointment_path %><br>
+<%= link_to "New/Edit Appointments", new_appointment_path %><br>
 
 <% if @current_user %>
   <%= link_to "Logout", logout_path, method: :delete, data: { confirm: "Are you sure?" } %><br>

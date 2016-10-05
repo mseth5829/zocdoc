@@ -3,11 +3,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.authenticate(user_params)
+    patient = Patient.authenticate(patient_params)
 
-    if user
-      session[:user_id] = user.id
-      flash[:success] = "User logged in!"
+    if patient
+      session[:patient_id] = patient.id
+      flash[:success] = "Patient logged in!"
       redirect_to root_path
     else
       flash[:danger] = "Credentials Invalid!"
@@ -16,14 +16,14 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
-    flash[:success] = "User logged out!"
+    session[:patient_id] = nil
+    flash[:success] = "Patient logged out!"
     redirect_to root_path
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:email, :password)
+  def patient_params
+    params.require(:patient).permit(:name, :email)
   end
 end
