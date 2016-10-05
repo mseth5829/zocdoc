@@ -1,2 +1,13 @@
-<h1>Appointments#show</h1>
-<p>Find me in app/views/appointments/show.html.erb</p>
+<h1>Appointment with <%=@doctor.name%></h1>
+
+<p>
+  <strong>Complaint: </strong>
+  <%= @appointment.complaint %>
+</p>
+
+<p>
+  <strong>Time: </strong>
+  <%= @appointment.time %>
+</p>
+
+<%= link_to 'Back', patient_path %>

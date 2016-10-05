@@ -18,7 +18,8 @@ class AppointmentsController < ApplicationController
   end
 
   def show
-    # @appointment = Appointment.find(params[:id])
+    @appointment = Appointment.find(params[:id])
+    @doctor = Appointment.find(@appointment.doctor_id)
   end
 
   def update
