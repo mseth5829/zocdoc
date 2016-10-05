@@ -9,13 +9,18 @@ class AppointmentsController < ApplicationController
   def create
     @name = current_user.name
     @appointment = Appointment.new(appointment_params)
+
     if @appointment.doctor_id && @appointment.time
+      puts "created, saving to db"
       render 'new'
     else
+      puts "2..."
       @appointment.patient_id = current_user.id
       if @appointment.save
+        puts "3..."
         redirect_to @appointment
       else
+        puts "4..."
         render 'new'
       end
     end

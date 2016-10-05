@@ -1,5 +1,6 @@
 class PatientsController < ApplicationController
   def show
+    puts "MATCHED ROUTE"
     @patient = Patient.find(params[:id])
     @appointments = @patient.appointments
   end
