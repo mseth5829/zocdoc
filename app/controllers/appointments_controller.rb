@@ -37,6 +37,8 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
+    Appointment.find(params[:id]).delete
+    redirect_to patient_path
   end
 
   private
