@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
   # end
 
   def current_user
-    @current_user ||= User.find_by_id(session[:user_id])
+    @current_user ||= Patient.find_by_id(session[:patient_id])
+  end
+
+  def change_index
+    current_user
   end
 end

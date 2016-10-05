@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  # declare root_path
+  root "main#index"
 
   resources :patients
   resources :doctors

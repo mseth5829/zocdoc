@@ -1,0 +1,10 @@
+<h1>Hello!</h1>
+
+<%= link_to "New/Edit Appointments", edit_appointment_path %><br>
+
+<% if @current_user %>
+  <%= link_to "Logout", logout_path, method: :delete, data: { confirm: "Are you sure?" } %><br>
+<% else %>
+  <%= link_to "Sign up", new_patient_path %><br>
+  <%= link_to "Log in", login_path %><br>
+<% end %>
