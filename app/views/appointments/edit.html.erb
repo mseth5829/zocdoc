@@ -3,18 +3,18 @@
 <%= form_for :appointment, url: appointment_path(@appointment), method: :patch do |f| %>
 
 <p>
-  <%= f.label :complaint %><br>
+  <strong><%= f.label :complaint %></strong><br>
   <%= f.text_field :complaint %>
 </p>
 
 <p>
-  <%= f.label :doctor %><br>
+  <strong><%= f.label :doctor %></strong><br>
   <%= f.select :doctor_id, Doctor.all.collect {|x| [x.name, x.id]}  %>
 </p>
 
 <p>
-  <%= f.label :time %><br>
-  <p>Please select a time between 9am to 5pm (appts made on an hourly basis)</p><br>
+  <strong><%= f.label :time %></strong><br>
+  <p style= "font-size:13px;margin-top:-10px;">Please select a time between 9am to 5pm (appts made on an hourly basis)</p>
   <select name="time">
     <option value="9">9</option>
     <option value="10">10</option>

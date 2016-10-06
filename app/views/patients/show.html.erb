@@ -1,21 +1,33 @@
 <h1>Appointment Data</h1>
 
 <p>
-  <strong>Name: </strong>
-  <%= @patient.name %>
+  Hi,
+  <strong><%= @patient.name %> </strong>
+  !
 </p>
 
 <p>
   <p><strong>Confirmed Appointments: </strong><br></p>
+  <table class="table-fill">
+  <tr>
+    <th>Complaint</th>
+    <th>Time</th>
+    <th>Doctor</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
   <% @appointments.each do |appointment| %>
   <tr>
-    <td>Complaint: <%= appointment.complaint %></td><br>
-    <td>Time: <%= appointment.time%></td><br>
+    <td><%= appointment.complaint %></td>
+    <td><%= appointment.time%></td>
+    <td><%= Doctor.find(appointment.doctor_id).name%></td>
     <td><%= link_to "Show", appointment %></td>
     <td><%= link_to "Edit", edit_appointment_path(appointment) %></td>
-    <td><%= link_to "Remove", appointment, method: :delete, data: { confirm: "Are you sure?" } %></td><br>
-  </tr><br>
+    <td><%= link_to "Remove", appointment, method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
   <% end %>
+</table>
 </p>
 
 <%= link_to 'Back', root_path %>
