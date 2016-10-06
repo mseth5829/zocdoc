@@ -10,7 +10,6 @@ class AppointmentsController < ApplicationController
     @name = current_user.name
     @appointment = Appointment.new(appointment_params)
     appointmentExists = Appointment.where(doctor_id: params[:appointment][:doctor_id], time: params[:time])
-    puts "APPTEXISTS/not :" + appointmentExists.inspect
 
     if appointmentExists.present?
       flash.now[:danger] = "Appointment is taken :("
@@ -28,19 +27,20 @@ class AppointmentsController < ApplicationController
 
   def show
     @appointment = Appointment.find(params[:id])
-    @doctor = Appointment.find(@appointment.doctor_id)
+    @doctor = Doctor.find(@appointment.doctor_id)
   end
 
   def update
     @appointment = Appointment.find(params[:id])
     appointmentExists = Appointment.where(doctor_id: params[:appointment][:doctor_id], time: params[:time])
+    puts "APPOINTMENT_PARAMS" + appointment_params.inspect
 
-    if appointmentExists
+    if appointmentExists.present?
       flash[:danger] = "Appointment is taken :("
       render 'new'
     else
+      @appointment.time = params[:time]
       if @appointment.update(appointment_params)
-        @appointment.time = params[:time]
         redirect_to @appointment
       else
         render "edit"
@@ -50,12 +50,13 @@ class AppointmentsController < ApplicationController
 
   def edit
     @appointment = Appointment.find(params[:id])
-    @doctor = Appointment.find(@appointment.doctor_id)
+    @doctor = Doctor.find(@appointment.doctor_id)
   end
 
   def destroy
+    @appointment = Appointment.find(params[:id])
     Appointment.find(params[:id]).delete
-    redirect_to patient_path
+    redirect_to patient_path(@appointment.patient_id)
   end
 
   private

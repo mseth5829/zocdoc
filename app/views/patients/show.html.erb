@@ -1,5 +1,4 @@
-<h1>Patients#show</h1>
-<p>Find me in app/views/patients/show.html.erb</p>
+<h1>Appointment Data</h1>
 
 <p>
   <strong>Name: </strong>
@@ -7,16 +6,16 @@
 </p>
 
 <p>
-  <strong>Confirmed Appointments: </strong><br>
+  <p><strong>Confirmed Appointments: </strong><br></p>
   <% @appointments.each do |appointment| %>
   <tr>
     <td>Complaint: <%= appointment.complaint %></td><br>
     <td>Time: <%= appointment.time%></td><br>
     <td><%= link_to "Show", appointment %></td>
     <td><%= link_to "Edit", edit_appointment_path(appointment) %></td>
-    <td><%= link_to "Remove", appointment, method: :delete, data: { confirm: "Are you sure?" } %></td>
-  </tr>
-<% end %>
+    <td><%= link_to "Remove", appointment, method: :delete, data: { confirm: "Are you sure?" } %></td><br>
+  </tr><br>
+  <% end %>
 </p>
 
 <%= link_to 'Back', root_path %>
