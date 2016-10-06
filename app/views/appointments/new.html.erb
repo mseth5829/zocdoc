@@ -1,6 +1,19 @@
 <h1>Create new Appointment for: <%= @current_user.name %></h1>
 
 <%= form_for :appointment, url: appointments_path do |f| %>
+<% if @appointment.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@appointment.errors.count, "error") %> prohibited
+      this appointment from being saved:
+    </h2>
+    <ul>
+      <% @appointment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <p>
   <%= f.label :complaint %><br>
@@ -20,10 +33,10 @@
     <option value="10">10</option>
     <option value="11">11</option>
     <option value="12">12</option>
-    <option value="13">12</option>
-    <option value="14">12</option>
-    <option value="15">12</option>
-    <option value="16">12</option>
+    <option value="13">13</option>
+    <option value="14">14</option>
+    <option value="15">15</option>
+    <option value="16">16</option>
   </select>
 </p>
 
