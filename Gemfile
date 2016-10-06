@@ -27,7 +27,12 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+
 gem 'rails_12factor', group: :production
+
+# Heroku-friendly Rails app configuration using ENV and a single YAML file
+gem "figaro"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
